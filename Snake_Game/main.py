@@ -1,10 +1,10 @@
 import pygame as pg
 from random import randint
 
-def inbounds(a, H, W):
+def inbounds(a:tuple, H:int, W:int) -> bool:
     return a[0] >= 0 and a[0] < H and a[1] < W and a[1] >= 0
 
-def direction(dx,dy):
+def direction(dx:int,dy:int) -> str:
     if dy == 1:
         return 'L'
     elif dy == -1:
@@ -14,7 +14,7 @@ def direction(dx,dy):
     elif dx == -1:
         return 'D'
 
-def bfs(curr, board):
+def bfs(curr:tuple, board:[[str]]) -> [[str]]:
     q = []
     q.append(curr)
     while len(q) != 0:
@@ -29,7 +29,7 @@ def bfs(curr, board):
                 q.append(next)
     return board
 
-def get_tas_movements(snack,board):
+def get_tas_movements(snack,board) -> [tuple]:
     tas = []
     tas.append(snack)
     while board[tas[-1][0]][tas[-1][1]] != '#':
@@ -45,7 +45,7 @@ def get_tas_movements(snack,board):
         tas.append((tas[-1][0]+movement[0],tas[-1][1]+movement[1]))
     return tas
 
-def get_height():
+def get_height() -> int:
     H = -1
     while True:
         try:
@@ -60,7 +60,7 @@ def get_height():
             print("Invalid input - please put a number")
     return H
 
-def get_width():
+def get_width() -> int:
     W = -1
     while True:
         try:
